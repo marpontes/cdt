@@ -1,0 +1,125 @@
+body{
+    background-image:url(blurry_green.jpg);
+    background-repeat:no-repeat;
+    background-position:center top;
+    background-size:cover;
+	background-attachment:fixed;
+}
+
+#ParametersPane{
+	-webkit-border-radius: 0px 0px 3px 3px;
+        	border-radius: 0px 0px 3px 3px;
+	background-color: rgba(0, 0, 0, 0.78);
+}
+
+#ToggleButton{
+	cursor:pointer;
+	background-image:url(ParamToggleIcon.png);
+	background-position:center top;
+	background-repeat:no-repeat;
+}
+
+
+/*	Fix for date picker inherited background property from 
+	blueprint/screen.css -> thead th {background:#c3d9ff;}
+*/
+table.ui-datepicker-calendar thead th {
+	background:transparent;
+}
+
+
+/*	General properties for parameters
+*/
+#StatusFilterPane button.ui-multiselect, 
+#TerritoryFilterPane button.ui-multiselect,
+#render_DatePicker{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	border: solid 3px #ccc;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 14px;
+	background: transparent;
+	color: #eee;
+	margin-top: 10px;
+	cursor: pointer;
+	background-repeat:no-repeat;
+	background-position: center right;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+
+}
+
+#StatusFilterPane button.ui-multiselect, 
+#TerritoryFilterPane button.ui-multiselect{
+	height: 33px;
+}
+
+
+
+/*	Specific parameters properties
+*/
+#render_DatePicker {
+	padding-right: 20px;
+	background-image: url(icon-calendar.png);
+}
+
+#StatusFilterPane button.ui-multiselect {
+	background-image: url(icon-status.png);
+}
+
+#TerritoryFilterPane button.ui-multiselect {
+	background-image: url(icon-territory.png);
+}
+
+
+/*	Customizations for Hynds multiselect component
+*/
+.ui-widget-content[class~=ui-multiselect-menu]{
+	background:transparent;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ui-icon.ui-icon-triangle-2-n-s {
+	background:transparent;
+}
+
+
+
+
+
+
+#Window01Outer{
+	background-color: rgba(255, 255, 255, 0.3);
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	padding:5px;
+}
+#Window01Content{
+	width:100%;
+	background-color:rgba(255, 255, 255, 0.9);
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.boxTitle{
+	height: 30px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	letter-spacing: -2px;
+	text-indent: 20px;
+	border-bottom:solid 1px #ccc;
+	color:#777;
+}
+
+.boxTitle span{
+	border-bottom:solid 4px #ccc;
+}
+
+#Export{
+	background-repeat:no-repeat;
+	background-position: center right;
+	background-image:url(icon-export.png);
+	cursor:pointer;
+	margin-left:20px;
+}

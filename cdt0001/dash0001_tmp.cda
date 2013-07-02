@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CDADescriptor>
+   <DataSources>
+      <Connection id="QueryStatuses" type="mondrian.jndi">
+         <Catalog>steel-wheels/analysis/steelwheels.mondrian.xml</Catalog>
+         <Jndi>SampleData</Jndi>
+      </Connection>
+      <Connection id="QueryTerritories" type="mondrian.jndi">
+         <Catalog>steel-wheels/analysis/steelwheels.mondrian.xml</Catalog>
+         <Jndi>SampleData</Jndi>
+      </Connection>
+      <Connection id="QueryProductLines" type="mondrian.jndi">
+         <Catalog>steel-wheels/analysis/steelwheels.mondrian.xml</Catalog>
+         <Jndi>SampleData</Jndi>
+      </Connection>
+   </DataSources>
+   <DataAccess access="public" cache="true" cacheDuration="3600" connection="QueryStatuses"
+               id="QueryStatuses"
+               type="mdx">
+      <BandedMode>compact</BandedMode>
+      <Columns/>
+      <Output indexes="0" mode="exclude"/>
+      <Parameters/>
+      <Query>with
+member [Measures].[Key] as [Order Status].currentMember.uniqueName
+member [Measures].[Value] as [Order Status].currentMember.name
+select {
+  [Measures].[Key],
+  [Measures].[Value]
+} on columns,
+
+union([Order Status].[All Status Types],[Order Status].children) on rows
+
+from [SteelWheelsSales]</Query>
+   </DataAccess>
+   <DataAccess access="public" cache="true" cacheDuration="3600" connection="QueryTerritories"
+               id="QueryTerritories"
+               type="mdx">
+      <BandedMode>compact</BandedMode>
+      <Columns/>
+      <Output indexes="0" mode="exclude"/>
+      <Parameters/>
+      <Query>with
+member [Measures].[Key] as [Markets].currentMember.uniqueName
+member [Measures].[Value] as [Markets].currentMember.name
+select {
+  [Measures].[Key],
+  [Measures].[Value]
+} on columns,
+
+except(union([Markets].[All Markets],[Markets].children),[Markets].[#null]) on rows
+
+from [SteelWheelsSales]</Query>
+   </DataAccess>
+   <DataAccess access="public" cache="true" cacheDuration="3600"
+               connection="QueryProductLines"
+               id="QueryProductLines"
+               type="mdx">
+      <BandedMode>compact</BandedMode>
+      <Columns/>
+      <Parameters>
+         <Parameter default="2005" name="DateParameterMDXYear" type="Integer"/>
+         <Parameter default="0" name="DateParameterMDXMonth" type="Integer"/>
+         <Parameter default="[Order Status].[All Status Types]" name="StatusParameter"
+                    type="String"/>
+         <Parameter default="[Markets].[All Markets]" name="TerritoryParameter" type="String"/>
+      </Parameters>
+      <Query>select 
+crossjoin([Measures].[Quantity],[Product].children) ON COLUMNS,
+{
+Descendants([Time].[${DateParameterMDXYear}], 2).Item(${DateParameterMDXMonth}).lag(11):
+Descendants([Time].[${DateParameterMDXYear}], 2).Item(${DateParameterMDXMonth})
+} ON ROWS
+from [SteelWheelsSales]
+where
+crossjoin( {${StatusParameter}} , {${TerritoryParameter}})</Query>
+   </DataAccess>
+</CDADescriptor>
