@@ -6,19 +6,23 @@ body{
 	background-attachment:fixed;
 }
 
+/*	Gives the parametrers pane background color and radius on bottom corners
+*/
 #ParametersPane{
 	-webkit-border-radius: 0px 0px 3px 3px;
         	border-radius: 0px 0px 3px 3px;
 	background-color: rgba(0, 0, 0, 0.78);
 }
 
+/*	Changes the cursor on ToggleButton hover
+	And sets up the image background
+*/
 #ToggleButton{
 	cursor:pointer;
 	background-image:url(ParamToggleIcon.png);
 	background-position:center top;
 	background-repeat:no-repeat;
 }
-
 
 /*	Fix for date picker inherited background property from 
 	blueprint/screen.css -> thead th {background:#c3d9ff;}
@@ -28,7 +32,7 @@ table.ui-datepicker-calendar thead th {
 }
 
 
-/*	General properties for parameters
+/*	General properties for parameters styling
 */
 #StatusFilterPane button.ui-multiselect, 
 #TerritoryFilterPane button.ui-multiselect,
@@ -49,14 +53,15 @@ table.ui-datepicker-calendar thead th {
 
 }
 
+/*	O Firefox, without this property, the 
+	Two Dropdowns grow 1cm bigger than DatePicker
+*/
 #StatusFilterPane button.ui-multiselect, 
 #TerritoryFilterPane button.ui-multiselect{
 	height: 33px;
 }
 
-
-
-/*	Specific parameters properties
+/*	Specific parameter components icons and properties
 */
 #render_DatePicker {
 	padding-right: 20px;
@@ -73,6 +78,7 @@ table.ui-datepicker-calendar thead th {
 
 
 /*	Customizations for Hynds multiselect component
+	Ads some transparent styling
 */
 .ui-widget-content[class~=ui-multiselect-menu]{
 	background:transparent;
@@ -83,17 +89,20 @@ table.ui-datepicker-calendar thead th {
 	background:transparent;
 }
 
-
-
-
-
-
+/*	Gives the chart window a white transparent border
+	that doesn't overflows on blueprint width
+*/
 #Window01Outer{
 	background-color: rgba(255, 255, 255, 0.3);
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 	padding:5px;
 }
+
+/*	Sets manually the content width
+	because span-24 overflows the #Window01Oute padding
+	Gives it transparent white 90% background
+*/
 #Window01Content{
 	width:100%;
 	background-color:rgba(255, 255, 255, 0.9);
@@ -101,6 +110,8 @@ table.ui-datepicker-calendar thead th {
 	padding-bottom:10px;
 }
 
+/*	Styles the chart title
+*/
 .boxTitle{
 	height: 30px;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -112,14 +123,48 @@ table.ui-datepicker-calendar thead th {
 	color:#777;
 }
 
+/*	That fancy underline on the text
+*/
 .boxTitle span{
 	border-bottom:solid 4px #ccc;
 }
 
-#Export{
+/*	Sets up the export button design and cursor 
+*/
+#ExportButton01{
 	background-repeat:no-repeat;
 	background-position: center right;
 	background-image:url(icon-export.png);
 	cursor:pointer;
 	margin-left:20px;
+	
+}
+
+/*	Gives the component's mandatory text a 
+	transparent color so it won't be visible
+*/
+#ExportButton01 div.popupTitle{
+	color:transparent;
+	text-decoration:none;
+}
+
+/* It gives the export options some style
+*/
+div.exportElement{
+	height:auto;
+	font-size:14px;
+	font-weight:bold;
+	text-transform:uppercase;
+	border-left:solid 3px #fff;
+}
+
+div.exportElement:hover{
+	border-left:solid 3px #ccc;
+}
+
+/* 	Corrects the position of the labels from export popup
+	They're originally under the close (x) button
+*/
+.popupComponent{
+	padding-top: 25px;
 }
